@@ -1,4 +1,7 @@
 #!/usr/local/bin/python
+# Author: Scott Chubb scott.chubb@netapp.com
+# Written for Python 3.4 and above
+# No warranty is offered, use at your own risk.  While these scripts have been tested in lab situations, all use cases cannot be accounted for.
 # Change sf-mvip.demo.netapp.com to your MVIP name or IP
 # Change admin to your user account
 # Change Netapp1! to your password

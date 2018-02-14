@@ -1,4 +1,7 @@
 #!/usr/local/bin/python
+# Author: Scott Chubb scott.chubb@netapp.com
+# Written for Python 3.4 and above
+# No warranty is offered, use at your own risk.  While these scripts have been tested in lab situations, all use cases cannot be accounted for.
 # Usage: python list_specific_account <ID or NAME> <Account name or ID> <mvip name or IP> <user> <password>
 # <ID or NAME> determine sif the user is looking for account by ID or NAME
 # <Account name or ID> this is the actual ID or name you are looking for
