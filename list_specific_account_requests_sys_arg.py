@@ -24,44 +24,48 @@ acct_type = sys.argv[4].lower()
 account = sys.argv[5]
 accountInfo = str(account)
 
-# Web/REST auth credentials build authentication
-auth = (user_name + ":" + user_pass)
-encodeKey = base64.b64encode(auth.encode('utf-8'))
-basicAuth = bytes.decode(encodeKey)
+def main():
+    # Web/REST auth credentials build authentication
+    auth = (user_name + ":" + user_pass)
+    encodeKey = base64.b64encode(auth.encode('utf-8'))
+    basicAuth = bytes.decode(encodeKey)
 
-headers = {
-    'Content-Type': "application/json",
-    'Authorization': "Basic %s" % basicAuth,
-    'Cache-Control': "no-cache",
-    }
+    headers = {
+        'Content-Type': "application/json",
+        'Authorization': "Basic %s" % basicAuth,
+        'Cache-Control': "no-cache",
+        }
 
-# Be certain of your API version path here
-url = "https://" + mvip_ip + "/json-rpc/9.0"
+    # Be certain of your API version path here
+    url = "https://" + mvip_ip + "/json-rpc/9.0"
 
-# Various payload params in one liner
-# payload = "{\n\t\"method\": \"GetAccountByID\",\n    \"params\": {\n        \"accountID\": <Account ID>\n    },\n    \"id\": 1\n}"
-# payload = "{\n\t\"method\": \"GetAccountByName\",\n    \"params\": {\n        \"username\": \"<Account Name>\"\n    },\n    \"id\": 1\n}"
+    # Various payload params in one liner
+    # payload = "{\n\t\"method\": \"GetAccountByID\",\n    \"params\": {\n        \"accountID\": <Account ID>\n    },\n    \"id\": 1\n}"
+    # payload = "{\n\t\"method\": \"GetAccountByName\",\n    \"params\": {\n        \"username\": \"<Account Name>\"\n    },\n    \"id\": 1\n}"
 
-# payload in JSON multi-line
-if acct_type == "id":
-    payload = "{" + \
-                    "\n  \"method\": \"GetAccountByID\"," + \
-                    "\n    \"params\": {" + \
-                    "\n    \t\"accountID\": " + str(accountInfo) + \
-                    "\n    }," + \
-                    "\n    \"id\": 1" + \
-                "\n}"
-else:
-    payload = "{" + \
-                    "\n  \"method\": \"GetAccountByName\"," + \
-                    "\n    \"params\": {" + \
-                    "\n    \t\"username\": \"" + str(accountInfo) + "\"" + \
-                    "\n    }," + \
-                    "\n    \"id\": 1" + \
-                "\n}"    
+    # payload in JSON multi-line
+    if acct_type == "id":
+        payload = "{" + \
+                        "\n  \"method\": \"GetAccountByID\"," + \
+                        "\n    \"params\": {" + \
+                        "\n    \t\"accountID\": " + str(accountInfo) + \
+                        "\n    }," + \
+                        "\n    \"id\": 1" + \
+                    "\n}"
+    else:
+        payload = "{" + \
+                        "\n  \"method\": \"GetAccountByName\"," + \
+                        "\n    \"params\": {" + \
+                        "\n    \t\"username\": \"" + str(accountInfo) + "\"" + \
+                        "\n    }," + \
+                        "\n    \"id\": 1" + \
+                    "\n}"    
 
-response = requests.request("POST", url, data=payload, headers=headers, verify=False)
+    response = requests.request("POST", url, data=payload, headers=headers, verify=False)
 
-raw = json.loads(response.text)
+    raw = json.loads(response.text)
 
-print(json.dumps(raw, indent=4, sort_keys=True))
+    print(json.dumps(raw, indent=4, sort_keys=True))
+
+if __name__ == "__main__"
+    main()

@@ -16,18 +16,22 @@ MVIP = sys.argv[3]
 SFUser = sys.argv[4]
 SFUserPass = sys.argv[5]
 
-# Use ElementFactory to get a SolidFireElement object.
-sfe = ElementFactory.create(MVIP, SFUser, SFUserPass)
-list_accounts_result = sfe.list_accounts()
+def main():
+    # Use ElementFactory to get a SolidFireElement object.
+    sfe = ElementFactory.create(MVIP, SFUser, SFUserPass)
+    list_accounts_result = sfe.list_accounts()
 
-# If the account type was submitted as an ID process it as an integer
-if accountType == "id":
-	for account in list_accounts_result.accounts:
-		if account.account_id == int(accountInfo):
-			print(account.username)
+    # If the account type was submitted as an ID process it as an integer
+    if accountType == "id":
+        for account in list_accounts_result.accounts:
+            if account.account_id == int(accountInfo):
+                print(account.username)
 
-else:
-	#By username
-	for account in list_accounts_result.accounts:
-		if account.username == accountInfo:
-			print(account.account_id)
+    else:
+        #By username
+        for account in list_accounts_result.accounts:
+            if account.username == accountInfo:
+                print(account.account_id)
+
+if __name__ == "__main__"
+    main()

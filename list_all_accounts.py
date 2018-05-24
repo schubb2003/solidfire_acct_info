@@ -8,28 +8,32 @@
 
 from solidfire.factory import ElementFactory
 
-# Use ElementFactory to get a SolidFireElement object.
-sfe = ElementFactory.create("sf-mvip.demo.netapp.com", "admin", "Netapp1!")
-list_accounts_result = sfe.list_accounts()
+def main():
+    # Use ElementFactory to get a SolidFireElement object.
+    sfe = ElementFactory.create("sf-mvip.demo.netapp.com", "admin", "Netapp1!")
+    list_accounts_result = sfe.list_accounts()
 
-for account in list_accounts_result.accounts:
-    print(account)
-    
-# To do the same with CLI arguments
-# Uncomment the lines below
-# import sys
-# from solidfire.factory import ElementFactory
-#
-#if len(sys.argv) < 4:
-#    print("insufficient arguments supplied, usage is \n"
-#          " python <script_name> <mvip> <user> <password>")
-#
-#mvip_ip = sys.argv[1]
-#user_name = sys.argv[2]
-#user_pass = sys.argv[3]
-#
-# sfe = ElementFactory.create(mvip_ip, user_name, user_pass)
-# list_accounts_result = sfe.list_accounts()
+    for account in list_accounts_result.accounts:
+        print(account)
+        
+    # To do the same with CLI arguments
+    # Uncomment the lines below
+    # import sys
+    # from solidfire.factory import ElementFactory
+    #
+    #if len(sys.argv) < 4:
+    #    print("insufficient arguments supplied, usage is \n"
+    #          " python <script_name> <mvip> <user> <password>")
+    #
+    #mvip_ip = sys.argv[1]
+    #user_name = sys.argv[2]
+    #user_pass = sys.argv[3]
+    #
+    # sfe = ElementFactory.create(mvip_ip, user_name, user_pass)
+    # list_accounts_result = sfe.list_accounts()
 
-# for account in list_accounts_result.accounts:
-#    print(account)
+    # for account in list_accounts_result.accounts:
+    #    print(account)
+
+if __name__ == "__main__"
+    main()

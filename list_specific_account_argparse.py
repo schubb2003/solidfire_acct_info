@@ -44,22 +44,26 @@ if acct_type == "id":
 else:
     accountInfo = str(account)
 
-# Use ElementFactory to get a SolidFireElement object.
-sfe = ElementFactory.create(mvip_ip, user_name, user_pass)
-list_accounts_result = sfe.list_accounts()
+def main():
+    # Use ElementFactory to get a SolidFireElement object.
+    sfe = ElementFactory.create(mvip_ip, user_name, user_pass)
+    list_accounts_result = sfe.list_accounts()
+    def main():
+        # If the account type was submitted as an ID process it as an integer
+        if acct_type == "id":
+            for account in list_accounts_result.accounts:
+                    if account.account_id == int(accountInfo):
+                        print("Account name is:\t %s" % account.username) 
+                    else:
+                        print("Account was not found, please check the account ID")
 
-# If the account type was submitted as an ID process it as an integer
-if acct_type == "id":
-	for account in list_accounts_result.accounts:
-            if account.account_id == int(accountInfo):
-                print("Account name is:\t %s" % account.username) 
-            else:
-                print("Account was not found, please check the account ID")
+        else:
+            #By username
+            for account in list_accounts_result.accounts:
+                    if account.username == accountInfo:
+                        print("account ID is:\t %s" % account.account_id)
+                    else:
+                        print("Account ID was not found, please check the account name")
 
-else:
-	#By username
-	for account in list_accounts_result.accounts:
-            if account.username == accountInfo:
-                print("account ID is:\t %s" % account.account_id)
-            else:
-                print("Account ID was not found, please check the account name")
+if __name__ == "__main__"
+    main()
