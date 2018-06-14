@@ -10,41 +10,45 @@ import sys
 import argparse
 from solidfire.factory import ElementFactory
 
-# Set vars for connectivity using argparse
-parser = argparse.ArgumentParser()
-parser.add_argument('-sm', type=str,
-                    required=True,
-                    metavar='mvip',
-                    help='MVIP/node name or IP')
-parser.add_argument('-su', type=str,
-                    required=True,
-                    metavar='username',
-                    help='username to connect with')
-parser.add_argument('-sp', type=str,
-                    required=True,
-                    metavar='password',
-                    help='password for user')
-parser.add_argument('-t', type=str,
-                    required=True,
-                    metavar='type',
-                    choices=['id', 'name'],
-                    help='Enter id to lookup by ID or name to lookup by name')
-parser.add_argument('-a', type=str,
-                    required=True,
-                    metavar='account',
-                    help="Enter the account name or ID")
-args = parser.parse_args()
+def parse_inputs()
+    # Set vars for connectivity using argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-sm', type=str,
+                        required=True,
+                        metavar='mvip',
+                        help='MVIP/node name or IP')
+    parser.add_argument('-su', type=str,
+                        required=True,
+                        metavar='username',
+                        help='username to connect with')
+    parser.add_argument('-sp', type=str,
+                        required=True,
+                        metavar='password',
+                        help='password for user')
+    parser.add_argument('-t', type=str,
+                        required=True,
+                        metavar='type',
+                        choices=['id', 'name'],
+                        help='Enter id to lookup by ID or name to lookup by name')
+    parser.add_argument('-a', type=str,
+                        required=True,
+                        metavar='account',
+                        help="Enter the account name or ID")
+    args = parser.parse_args()
+    return args
 
-mvip_ip = args.sm
-user_name = args.su
-user_pass = args.sp
-acct_type = args.t
-account = args.a
-accountInfo = str(account)
+
 
 def main():
+    argv = parse_inputs()
+    src_mvip = args.sm
+    src_user = args.su
+    src_pass = args.sp
+    vol_acct = args.a
+    acct_type = args.t
+    accountInfo = str(vol_acct)
     # Web/REST auth credentials build authentication
-    auth = (user_name + ":" + user_pass)
+    auth = (src_user + ":" + src_pass)
     encodeKey = base64.b64encode(auth.encode('utf-8'))
     basicAuth = bytes.decode(encodeKey)
 
@@ -55,7 +59,7 @@ def main():
         }
 
     # Be certain of your API version path here
-    url = "https://" + mvip_ip + "/json-rpc/9.0"
+    url = "https://" + src_mvip + "/json-rpc/9.0"
 
     # Various payload params in one liner
     # payload = "{\n\t\"method\": \"GetAccountByID\",\n    \"params\": {\n        \"accountID\": <Account ID>\n    },\n    \"id\": 1\n}"

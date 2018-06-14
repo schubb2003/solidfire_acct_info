@@ -8,60 +8,64 @@ import argparse
 from solidfire.factory import ElementFactory
 
 # Set vars for connectivity using argparse
-parser = argparse.ArgumentParser()
-parser.add_argument('-sm', type=str,
-                    required=True,
-                    metavar='mvip',
-                    help='MVIP/node name or IP')
-parser.add_argument('-su', type=str,
-                    required=True,
-                    metavar='username',
-                    help='username to connect with')
-parser.add_argument('-sp', type=str,
-                    required=True,
-                    metavar='password',
-                    help='password for user')
-parser.add_argument('-t', type=str,
-                    required=True,
-                    metavar='type',
-                    choices=['id', 'name'],
-                    help='Enter id to lookup by ID or name to lookup by name')
-parser.add_argument('-a', type=str,
-                    required=True,
-                    metavar='account',
-                    help="Enter the account name or ID")
-args = parser.parse_args()
+def parse_inputs():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-sm', type=str,
+                        required=True,
+                        metavar='mvip',
+                        help='MVIP/node name or IP')
+    parser.add_argument('-su', type=str,
+                        required=True,
+                        metavar='username',
+                        help='username to connect with')
+    parser.add_argument('-sp', type=str,
+                        required=True,
+                        metavar='password',
+                        help='password for user')
+    parser.add_argument('-t', type=str,
+                        required=True,
+                        metavar='type',
+                        choices=['id', 'name'],
+                        help='Enter id to lookup by ID or name to lookup by name')
+    parser.add_argument('-a', type=str,
+                        required=True,
+                        metavar='account',
+                        help="Enter the account name or ID")
+    args = parser.parse_args()
+    return args
 
-mvip_ip = args.sm
-user_name = args.su
-user_pass = args.sp
-acct_type = args.t
-account = args.a
-
-if acct_type == "id":
-    accountInfo = int(account)
-    
-else:
-    accountInfo = str(account)
 
 def main():
+    agrv = parse_inputs()
+    src_mvip = argv.sm
+    src_user = argv.su
+    src_pass = argv.sp
+    vol_acct = argv.a
+    acct_type = argv.t
+    
+    if acct_type == "id":
+        accountInfo = int(vol_acct)
+    
+    else:
+        accountInfo = str(vol_acct)
+    
     # Use ElementFactory to get a SolidFireElement object.
-    sfe = ElementFactory.create(mvip_ip, user_name, user_pass)
+    sfe = ElementFactory.create(src_mvip, src_user, src_pass)
     list_accounts_result = sfe.list_accounts()
     def main():
         # If the account type was submitted as an ID process it as an integer
         if acct_type == "id":
             for account in list_accounts_result.accounts:
-                    if account.account_id == int(accountInfo):
-                        print("Account name is:\t %s" % account.username) 
+                    if vol_acct.account_id == int(accountInfo):
+                        print("Account name is:\t %s" % vol_acct.username) 
                     else:
                         print("Account was not found, please check the account ID")
 
         else:
             #By username
             for account in list_accounts_result.accounts:
-                    if account.username == accountInfo:
-                        print("account ID is:\t %s" % account.account_id)
+                    if vol_acct.username == accountInfo:
+                        print("account ID is:\t %s" % vol_acct.account_id)
                     else:
                         print("Account ID was not found, please check the account name")
 
