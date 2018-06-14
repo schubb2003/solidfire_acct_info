@@ -37,9 +37,13 @@ def main():
 
     response = requests.request("POST", url, data=payload, headers=headers, verify=False)
 
-    raw = json.loads(response.text)
-
-    print(json.dumps(raw, indent=4, sort_keys=True))
+    if response.status_code == 401:
+        print("Unauthorized access attempted, please check username and password")
+    elif response.status_code == 200:
+        raw = json.loads(response.text)
+        print(json.dumps(raw, indent=4, sort_keys=True))
+    else:
+        print("Unhandled error")
 
 if __name__ == "__main__":
     main()
