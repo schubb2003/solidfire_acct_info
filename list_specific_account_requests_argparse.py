@@ -41,11 +41,11 @@ def parse_inputs():
 
 def main():
     argv = parse_inputs()
-    src_mvip = args.sm
-    src_user = args.su
-    src_pass = args.sp
-    vol_acct = args.a
-    acct_type = args.t
+    src_mvip = argv.sm
+    src_user = argv.su
+    src_pass = argv.sp
+    vol_acct = argv.a
+    acct_type = argv.t
     accountInfo = str(vol_acct)
     # Web/REST auth credentials build authentication
     auth = (src_user + ":" + src_pass)
