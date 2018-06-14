@@ -41,5 +41,5 @@ def main():
 
     print(json.dumps(raw, indent=4, sort_keys=True))
 
-if __name__ == "__main__"
+if __name__ == "__main__":
     main()

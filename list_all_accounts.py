@@ -35,5 +35,5 @@ def main():
     # for account in list_accounts_result.accounts:
     #    print(account)
 
-if __name__ == "__main__"
+if __name__ == "__main__":
     main()

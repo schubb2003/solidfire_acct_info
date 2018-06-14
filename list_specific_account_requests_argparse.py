@@ -10,7 +10,7 @@ import sys
 import argparse
 from solidfire.factory import ElementFactory
 
-def parse_inputs()
+def parse_inputs():
     # Set vars for connectivity using argparse
     parser = argparse.ArgumentParser()
     parser.add_argument('-sm', type=str,
@@ -89,5 +89,5 @@ def main():
 
     print(json.dumps(raw, indent=4, sort_keys=True))
 
-if __name__ == "__main__"
+if __name__ == "__main__":
     main()

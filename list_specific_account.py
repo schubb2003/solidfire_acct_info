@@ -33,5 +33,5 @@ def main():
             if account.username == accountInfo:
                 print(account.account_id)
 
-if __name__ == "__main__"
+if __name__ == "__main__":
     main()

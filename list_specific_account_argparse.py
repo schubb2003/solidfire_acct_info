@@ -36,7 +36,7 @@ def parse_inputs():
 
 
 def main():
-    agrv = parse_inputs()
+    argv = parse_inputs()
     src_mvip = argv.sm
     src_user = argv.su
     src_pass = argv.sp
@@ -69,5 +69,5 @@ def main():
                     else:
                         print("Account ID was not found, please check the account name")
 
-if __name__ == "__main__"
+if __name__ == "__main__":
     main()
