@@ -47,6 +47,7 @@ def main():
     vol_acct = argv.a
     acct_type = argv.t
     accountInfo = str(vol_acct)
+
     # Web/REST auth credentials build authentication
     auth = (src_user + ":" + src_pass)
     encodeKey = base64.b64encode(auth.encode('utf-8'))
@@ -85,9 +86,13 @@ def main():
 
     response = requests.request("POST", url, data=payload, headers=headers, verify=False)
 
-    raw = json.loads(response.text)
-
-    print(json.dumps(raw, indent=4, sort_keys=True))
+    if response.status_code == 401:
+        print("Unauthorized access attempted, please check username and password")
+    elif response.status_code == 200:
+        raw = json.loads(response.text)
+        print(json.dumps(raw, indent=4, sort_keys=True))
+    else:
+        print("Unhandled error")
 
 if __name__ == "__main__":
     main()
