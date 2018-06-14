@@ -11,6 +11,8 @@ import base64
 import requests
 from solidfire.factory import ElementFactory
 
+src_mvip = "sf-mvip.demo.netapp.com"
+
 def main():
     # Web/REST auth credentials build authentication
     auth = ("admin:Netapp1!")
@@ -24,13 +26,12 @@ def main():
         }
 
     # Be certain of your API version path here
-    url = "https://" + mvip_ip + "/json-rpc/9.0"
+    url = "https://" + src_mvip + "/json-rpc/9.0"
     # Various payload params in one liner
     # payload = "{\n\t\"method\": \"ListAccounts\",\n    \"params\": {\n        \"startAccountID\": <Optional Account ID to start listing>,\n        \"limit\": <Optional Number of accounts to return>,\n        \"includeStorageContainers\": <Boolean true or false>\n    },\n    \"id\": 1\n}"
 
     payload = "{" + \
                     "\n  \"method\": \"ListAccounts\"," + \
-                    "\n    \"params\": {}" + \
                     "\n    \"id\": 1" + \
                 "\n}"
 
